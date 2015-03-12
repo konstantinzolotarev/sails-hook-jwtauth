@@ -1,21 +1,24 @@
 'use strict';
 
-module.exports = function(app) {
-
+module.exports = function (app) {
   return {
+
     defaults: {
+      jwtauth: {
+        model: '',
+        identifier: '_id'
+      }
+    },
 
-        jwtauth: {
-          model: ''
-        }
-      },
-
-      configure: function(app) {
+    initialize: function (cb) {
+      try {
         if (!app.config.jwtauth.model) {
           throw new Error('Please configure model.');
         }
-      },
-
-      initialize: function(app) {}
+        cb();
+      } catch(err) {
+        return cb(err);
+      }
+    }
   };
 };
