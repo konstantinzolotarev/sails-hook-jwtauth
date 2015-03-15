@@ -7,7 +7,8 @@ module.exports = function (app) {
       jwtauth: {
         model: '',
         identifier: '_id',
-        secret: ''
+        secret: '',
+        loginUrl: '/'
       }
     },
 

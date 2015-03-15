@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
     if (req.xhr || req.wantsJSON) {
       return res.forbidden('You are not permitted to perform this action.');
     } else {
-      return res.redirect('/auth/login');
+      return res.redirect(sails.config.jwtauth.loginUrl || '/');
     }
   }
 
