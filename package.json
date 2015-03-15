@@ -1,6 +1,6 @@
 {
   "name": "sails-hook-jwtauth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Auth helper for Sails.js apps",
   "main": "index.js",
   "scripts": {
