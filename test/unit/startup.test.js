@@ -20,6 +20,14 @@ describe('Test', function() {
     });
   });
 
+  it('should fail without secret', function(done) {
+    helper.lift({jwtauth: {model: 'User'}}, function(err, _sails) {
+      should.exist(err);
+      err.message.should.be.eql('Please configure secret.');
+      done();
+    });
+  });
+
   it('should not fail with model configured', function(done) {
     var config = {
       jwtauth: {model: 'User'}

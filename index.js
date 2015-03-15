@@ -6,7 +6,8 @@ module.exports = function (app) {
     defaults: {
       jwtauth: {
         model: '',
-        identifier: '_id'
+        identifier: '_id',
+        secret: ''
       }
     },
 
@@ -14,6 +15,9 @@ module.exports = function (app) {
       try {
         if (!app.config.jwtauth.model) {
           throw new Error('Please configure model.');
+        }
+        if (!app.config.jwtauth.secret) {
+          throw new Error('Please configure secret.');
         }
         cb();
       } catch(err) {
