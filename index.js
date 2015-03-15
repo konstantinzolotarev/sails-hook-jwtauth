@@ -17,8 +17,9 @@ module.exports = function (app) {
     defaults: {
       jwtauth: {
         model: '',
-        identifier: '_id',
-
+        identifier: 'id',
+        tokenField: 'access_token',
+        tokenHeaderField: 'x-access-token',
         algorithm: 'HS256',
         secret: '',
         loginUrl: '/'
