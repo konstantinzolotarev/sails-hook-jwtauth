@@ -1,7 +1,5 @@
 'use strict';
 
-var jwt = require('jsonwebtoken');
-
 /**
  * Policy for check JWT auth and load user
  *
@@ -27,10 +25,11 @@ module.exports = function(req, res, next) {
     return forbidden();
   }
 
-  sails.jwt.verify(token, function(err, decoded) {
+  sails.jwtauth.decode(token, function(err, decoded) {
     if (err) {
       return forbidden();
     }
-    //check decoded
+    req.user = user;
+    next();
   });
 };
