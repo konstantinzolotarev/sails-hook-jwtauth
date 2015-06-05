@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 module.exports = function (app) {
   /**
    * List of hooks that required for adminpanel to work
@@ -35,7 +37,7 @@ module.exports = function (app) {
            */
           _.forEach(requiredHooks, function (hook) {
             if (!app.hooks[hook]) {
-              throw new Error('Cannot use `adminpanel` hook without the `' + hook + '` hook.');
+              throw new Error('Cannot use `jwtauth` hook without the `' + hook + '` hook.');
             }
             //if (hook == 'policies') {
             //    eventsToWaitFor.push('hook:' + hook + ':bound');
@@ -55,6 +57,10 @@ module.exports = function (app) {
           throw new Error('Please configure secret.');
         }
         app.jwtauth = require('./lib/jwtauth')(app);
+        if (!app.hooks.policies.middleware) {
+          app.hooks.policies.middleware = {};
+        }
+        app.hooks.policies.middleware.loaduser = require('./middleware/loadUser');
         cb();
       } catch(err) {
         return cb(err);
